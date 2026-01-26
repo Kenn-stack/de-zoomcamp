@@ -1,3 +1,5 @@
 green_tripdata_2025-11.parquet
 taxi_zone_lookup.csv
 *.ipynb
+.gitignore
+github_personal_access_token
