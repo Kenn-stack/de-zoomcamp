@@ -6,13 +6,13 @@ def load_to_bq(taxi_type):
     DATASET_ID = "nytaxi"
 
 
-    gcs_uri = f"gs://{BUCKET_NAME}/{taxi_type}_tripdata*"
+    gcs_uri = f"gs://{BUCKET_NAME}/fhv/fhv_tripdata*"
     bq_client = bigquery.Client(project=PROJECT_ID)
     dataset_id_full = f"{PROJECT_ID}.{DATASET_ID}"
     dataset = bigquery.Dataset(dataset_id_full)
     dataset.location = "us-central1"  # set your location
     bq_client.create_dataset(dataset, exists_ok=True)
-    table_ref = f"{PROJECT_ID}.{DATASET_ID}.{taxi_type}_tripdata"
+    table_ref = f"{PROJECT_ID}.{DATASET_ID}.fhv_tripdata"
 
     job_config = bigquery.LoadJobConfig(
         source_format=bigquery.SourceFormat.CSV,

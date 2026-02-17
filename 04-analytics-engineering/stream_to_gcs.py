@@ -2,15 +2,15 @@ import requests
 from google.cloud import storage
 
 
-def stream_to_gcs(colour, year):
+def stream_to_gcs():
     BUCKET_NAME = "de-zoomcamp-483921-analytics-bucket"
     MONTHS = [f"{i:02d}" for i in range(1, 13)]
     
     for month in MONTHS:
-        FILE_NAME = f"{colour}_tripdata_{year}-{month}.csv.gz"
-        FILE_URL = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{colour}/{FILE_NAME}"
+        FILE_NAME = f"fhv_tripdata_2019-{month}.csv.gz"
+        FILE_URL = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/fhv/{FILE_NAME}"
         TABLE_ID = FILE_NAME
-        BLOB_NAME = FILE_NAME  # path in GCS
+        BLOB_NAME = f"fhv/{FILE_NAME}"  # path in GCS
 
         # -----------------------------
         # 1️⃣ Check if CSV exists in GCS
@@ -36,5 +36,5 @@ def stream_to_gcs(colour, year):
 
 
 if __name__ == "__main__":
-    stream_to_gcs("yellow", "2019")
+    stream_to_gcs()
 
